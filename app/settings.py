@@ -30,7 +30,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_countries',
+
     'rest_framework',
+    'rest_framework_simplejwt',
+    
     'actors',
     'genres',
     'movies',
