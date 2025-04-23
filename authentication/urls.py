@@ -11,9 +11,7 @@ urlpatterns = [
         "authentication/token/", TokenObtainPairView.as_view(), name="token-obtain-pair"
     ),
     path(
-        "authentication/token/refresh/",
-        TokenRefreshView.as_view(),
-        name="token-refresh",
+        "authentication/token/refresh/", TokenRefreshView.as_view(), name="token-refresh",
     ),
     path(
         "authentication/token/verify/", TokenVerifyView.as_view(), name="token-verify"
