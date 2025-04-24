@@ -14,11 +14,11 @@ class Actor(models.Model):
     active = models.BooleanField(default=True, verbose_name="Ativo")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Criado em")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Atualizado em")
-    
+
     class Meta:
         ordering = ['name']
         verbose_name = "Ator"
         verbose_name_plural = "Atores"
-    
+
     def __str__(self):
         return self.name
