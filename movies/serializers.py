@@ -11,15 +11,15 @@ class MovieSerializer(serializers.ModelSerializer):
         model = Movies
         fields = "__all__"
 
-        def validate_title(self, value):
-            if len(value) > 120:
-                raise serializers.ValidationError('The title is too long')
-            return value
+    def validate_title(self, value):
+        if len(value) > 120:
+            raise serializers.ValidationError('The title is too long')
+        return value
 
-        def validate_resume(self, value):
-            if len(value) > 200:
-                raise serializers.ValidationError('The resume is too long')
-            return value
+    def validate_resume(self, value):
+        if len(value) > 200:
+            raise serializers.ValidationError('The resume is too long')
+        return value
 
 
 class MovieListDetailSerializer(serializers.ModelSerializer):
@@ -33,8 +33,8 @@ class MovieListDetailSerializer(serializers.ModelSerializer):
         fields = ['id', 'title', 'genre', 'actors', 'release_date', 'rate', 'resume']
 
     def get_rate(self, obj):
-            rate = obj.reviews.aggregate(Avg('stars'))['stars__avg']
+        rate = obj.reviews.aggregate(Avg('stars'))['stars__avg']
 
-            if rate:
-                return round(rate, 1)
-            return None
+        if rate:
+            return round(rate, 1)
+        return None
