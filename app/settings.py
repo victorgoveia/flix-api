@@ -1,8 +1,12 @@
 from pathlib import Path
-from dotenv import load_dotenv
 import os
 
-load_dotenv()
+
+ENVIRONMENT = os.getenv('ENVIRONMENT', 'development')
+
+if ENVIRONMENT == 'development':
+    from dotenv import load_dotenv
+    load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -15,9 +19,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = ENVIRONMENT == 'development'
 
-ALLOWED_HOSTS = []
+if ENVIRONMENT == 'development':
+    ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
+else:
+    ALLOWED_HOSTS = []
 
 
 # Application definition
